@@ -47,7 +47,7 @@ const routes = [
         component: EmployeesIndex
     }
 ];
- 
+
 export default createRouter({
     history: createWebHistory(),
     routes

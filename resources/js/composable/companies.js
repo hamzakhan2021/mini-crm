@@ -1,24 +1,24 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
- 
+
 export default function useCompanies() {
     const company = ref([])
     const companies = ref([])
- 
+
     const errors = ref('')
     const router = useRouter()
- 
+
     const getCompanies = async () => {
         let response = await axios.get('/api/companies')
         companies.value = response.data.data
     }
- 
+
     const showCompany = async (id) => {
         let response = await axios.get(`/api/companies/${id}`)
         company.value = response.data.data
     }
- 
+
     const storeCompany = async (data) => {
         errors.value = ''
         try {
@@ -26,7 +26,7 @@ export default function useCompanies() {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
-              });
+            });
             await router.push({ name: 'companies.index' })
         } catch (e) {
             if (e.response.status === 422) {
@@ -35,7 +35,7 @@ export default function useCompanies() {
                 }
             }
         }
- 
+
     }
     const getPaginatedCompanies = async (page = 1) => {
         try {
@@ -55,7 +55,7 @@ export default function useCompanies() {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
-              });
+            });
             await router.push({ name: 'companies.index' })
         } catch (e) {
             if (e.response.status === 422) {

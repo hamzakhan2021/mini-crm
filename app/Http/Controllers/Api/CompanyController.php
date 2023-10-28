@@ -18,6 +18,8 @@ class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return void
      */
     public function index()
     {
@@ -27,6 +29,9 @@ class CompanyController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param CompanyStoreRequest $request
+     * @return void
      */
     public function store(CompanyStoreRequest $request)
     {
@@ -54,6 +59,9 @@ class CompanyController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param Company $company
+     * @return void
      */
     public function show(Company $company)
     {
@@ -61,12 +69,16 @@ class CompanyController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     *  Update the specified resource in storage.
+     *
+     * @param CompanyUpdateRequest $request
+     * @param Company $company
+     * @return void
      */
     public function update(CompanyUpdateRequest $request, Company $company)
     {
         $data = $request->validated();
-        
+
         if ($request->hasFile('logo')) {
             $logo = $request->file('logo');
             $logoPath = $logo->store('public/company_logos');
@@ -89,11 +101,14 @@ class CompanyController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param Company $company
+     * @return void
      */
     public function destroy(Company $company)
     {
         $company->delete();
- 
+
         return response()->noContent();
     }
 }

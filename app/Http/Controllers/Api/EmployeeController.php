@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Employees\StoreEmployeeRequest;
-use App\Http\Requests\Employees\UpdateEmployeeRequest;
+use App\Http\Requests\Employees\EmployeeStoreRequest;
+use App\Http\Requests\Employees\EmployeeUpdateRequest;
 use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
 
@@ -12,6 +12,8 @@ class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return void
      */
     public function index()
     {
@@ -21,8 +23,11 @@ class EmployeeController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param EmployeeStoreRequest $request
+     * @return void
      */
-    public function store(StoreEmployeeRequest $request)
+    public function store(EmployeeStoreRequest $request)
     {
         $data = $request->validated();
 
@@ -34,6 +39,9 @@ class EmployeeController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param Employee $employee
+     * @return void
      */
     public function show(Employee $employee)
     {
@@ -42,8 +50,12 @@ class EmployeeController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param EmployeeUpdateRequest $request
+     * @param Employee $employee
+     * @return void
      */
-    public function update(UpdateEmployeeRequest $request, Employee $employee)
+    public function update(EmployeeUpdateRequest $request, Employee $employee)
     {
         $employee->update($request->validated());
  
@@ -52,6 +64,9 @@ class EmployeeController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param Employee $employee
+     * @return void
      */
     public function destroy(Employee $employee)
     {

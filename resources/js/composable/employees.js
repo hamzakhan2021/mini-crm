@@ -1,25 +1,25 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
- 
+
 export default function useEmployees() {
     const employee = ref([])
     const employees = ref([])
     const currentPage = ref([])
- 
+
     const errors = ref('')
     const router = useRouter()
- 
+
     const getEmployees = async () => {
         let response = await axios.get('/api/employees')
         employees.value = response.data.data
     }
- 
+
     const showEmployee = async (id) => {
         let response = await axios.get(`/api/employees/${id}`)
         employee.value = response.data.data
     }
- 
+
     const storeEmployee = async (data) => {
         errors.value = ''
         try {
@@ -27,7 +27,7 @@ export default function useEmployees() {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
-              });
+            });
             await router.push({ name: 'employees.index' })
         } catch (e) {
             if (e.response.status === 422) {
@@ -36,9 +36,9 @@ export default function useEmployees() {
                 }
             }
         }
- 
+
     }
- 
+
     const updateEmployee = async (id) => {
         errors.value = ''
         try {
@@ -46,7 +46,7 @@ export default function useEmployees() {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
-              });
+            });
             await router.push({ name: 'employees.index' })
         } catch (e) {
             if (e.response.status === 422) {
