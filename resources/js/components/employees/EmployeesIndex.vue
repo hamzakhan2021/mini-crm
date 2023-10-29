@@ -79,11 +79,11 @@ import { onMounted, ref } from 'vue';
 
 export default {
     setup() {
-        const { employees, getEmployees, getPaginatedEmployees, currentPage } = useEmployee()
+        const { employees, getEmployees, getPaginatedEmployees, currentPage, totalItem } = useEmployee()
 
         onMounted(getEmployees)
 
-        const totalItems = ref(100);
+        const totalItems = ref(totalItem);
         const itemsPerPage = ref(10);
         const currentPageData = ref(currentPage);
 

@@ -8,8 +8,21 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <router-view />
+                <div class="flex">
+                    <!-- Sidebar -->
+                    <div class="w-1/6 bg-gray-200 p-4">
+                        <a href="/dashboard">Dashboard</a><br>
+                        <br>
+                        <br>
+                        <br>
+                        <a href="/companies">Companies</a><br>
+                        <a href="/employees">Employees</a><br>
+                    </div>
+
+                    <!-- Content Area -->
+                    <div  class="w-3/4 overflow-x-auto" style="margin-left: 10px;">
+                        <router-view />
+                    </div>
                 </div>
             </div>
         </div>

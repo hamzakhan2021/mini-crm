@@ -7,6 +7,7 @@ use App\Http\Requests\Employees\EmployeeStoreRequest;
 use App\Http\Requests\Employees\EmployeeUpdateRequest;
 use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
+use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {

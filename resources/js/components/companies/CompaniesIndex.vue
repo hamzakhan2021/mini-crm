@@ -79,12 +79,12 @@ import { onMounted, ref } from 'vue';
 
 export default {
     setup() {
-        const { companies, getCompanies, getPaginatedCompanies } = useCompany()
+        const { companies, getCompanies, getPaginatedCompanies, totalItem } = useCompany()
 
         onMounted(getCompanies)
 
-        const totalItems = ref(100); // Replace with the total number of items
-        const itemsPerPage = ref(10); // Replace with the number of items per page
+        const totalItems = ref(totalItem);
+        const itemsPerPage = ref(10);
         const currentPageData = ref([]);
 
         const deleteCompany = async (id) => {

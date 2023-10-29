@@ -6,6 +6,7 @@ export default function useEmployees() {
     const employee = ref([])
     const employees = ref([])
     const currentPage = ref([])
+    const totalItem = ref('')
 
     const errors = ref('')
     const router = useRouter()
@@ -13,6 +14,7 @@ export default function useEmployees() {
     const getEmployees = async () => {
         let response = await axios.get('/api/employees')
         employees.value = response.data.data
+        totalItem.value = response.data.meta.total
     }
 
     const showEmployee = async (id) => {
@@ -44,7 +46,7 @@ export default function useEmployees() {
         try {
             await axios.patch(`/api/employees/${id}`, employee.value, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                 },
             });
             await router.push({ name: 'employees.index' })
@@ -83,5 +85,6 @@ export default function useEmployees() {
         destroyEmployee,
         getPaginatedEmployees,
         currentPage,
+        totalItem
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
+use function PHPUnit\Framework\isNull;
+
 class Company extends Model
 {
     use HasFactory;
@@ -18,8 +20,9 @@ class Company extends Model
     protected function logo(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => asset("$value"),
+            get: function (?string $value) {
+                return is_null($value) ? ' ' : asset($value);
+            }
         );
     }
-
 }

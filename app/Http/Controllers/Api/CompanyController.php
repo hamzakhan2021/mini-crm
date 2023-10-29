@@ -7,12 +7,9 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Companies\CompanyStoreRequest;
 use App\Http\Requests\Companies\CompanyUpdateRequest;
-use App\Http\Requests\Companies\StoreCompanyRequest;
-use App\Http\Requests\Companies\UpdateCompanyRequest;
 use App\Http\Resources\CompanyResource;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\SendEmailJob;
-use GuzzleHttp\Psr7\Request;
 
 class CompanyController extends Controller
 {

@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 export default function useCompanies() {
     const company = ref([])
     const companies = ref([])
+    const totalItem = ref('')
 
     const errors = ref('')
     const router = useRouter()
@@ -12,6 +13,7 @@ export default function useCompanies() {
     const getCompanies = async () => {
         let response = await axios.get('/api/companies')
         companies.value = response.data.data
+        totalItem.value = response.data.meta.total
     }
 
     const showCompany = async (id) => {
@@ -49,11 +51,12 @@ export default function useCompanies() {
     };
 
     const updateCompany = async (id) => {
+        console.log(company.value)
         errors.value = ''
         try {
             await axios.patch(`/api/companies/${id}`, company.value, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                 },
             });
             await router.push({ name: 'companies.index' })
@@ -79,6 +82,7 @@ export default function useCompanies() {
         storeCompany,
         updateCompany,
         destroyCompany,
-        getPaginatedCompanies
+        getPaginatedCompanies,
+        totalItem
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('first_name', 255); // First name (required)
             $table->string('last_name', 255); // Last name (required)
             $table->unsignedBigInteger('company_id'); // Company (foreign key)
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('company_id')->references('id')->on('companies')->cascadeOnDelete();
             $table->string('email', 255)->nullable(); // Email
             $table->string('phone', 20)->nullable(); // Phone
             $table->timestamps();
